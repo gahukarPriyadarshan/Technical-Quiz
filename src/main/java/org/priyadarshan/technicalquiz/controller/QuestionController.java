@@ -31,7 +31,7 @@ public class QuestionController {
     //http://localhost:8080/question/category/postman
     @GetMapping("/category/{category}")
     public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
-        return questionService.getQuestionsByCategory(category);
+        return questionService.getQuestionsByCategory(category.toLowerCase());
     }
 
     //http://localhost:8080/question/all
@@ -44,7 +44,7 @@ public class QuestionController {
     @GetMapping("/categoryRandom/{category}")
     public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category,
                                                                  @RequestParam(required = false, defaultValue = "10") int limit) {
-        return questionService.getRandomQuestionsByCategory(category, limit);
+        return questionService.getRandomQuestionsByCategory(category.toLowerCase(), limit);
     }
 
 }

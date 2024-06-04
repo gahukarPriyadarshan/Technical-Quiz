@@ -27,11 +27,11 @@ public class QuizController {
             @RequestParam(required = false) String difficulty
     ) {
         if(category != null && difficulty != null) {
-            return quizService.getQuizByCategoryAndDifficulty(key, limit, category, difficulty);
+            return quizService.getQuizByCategoryAndDifficulty(key, limit, category.toLowerCase(), difficulty.toLowerCase());
         } else if (difficulty != null) {
-            return quizService.getQuizByDifficulty(key, limit, difficulty);
+            return quizService.getQuizByDifficulty(key, limit, difficulty.toLowerCase());
         } else if (category != null) {
-            return quizService.getQuizByCategory(key, limit, category);
+            return quizService.getQuizByCategory(key, limit, category.toLowerCase());
         }else{
             return quizService.getQuiz(key, limit);
         }
