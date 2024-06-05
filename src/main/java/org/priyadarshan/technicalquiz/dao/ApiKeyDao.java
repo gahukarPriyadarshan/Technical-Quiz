@@ -1,7 +1,9 @@
 package org.priyadarshan.technicalquiz.dao;
 
+import jakarta.transaction.Transactional;
 import org.priyadarshan.technicalquiz.pojo.ApiKey;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,8 @@ public interface ApiKeyDao extends JpaRepository<ApiKey,Integer> {
 
     Optional<ApiKey> findByApiKey(String apiKey);
 
+    @Transactional
+    @Modifying
     @Query(value = "DELETE FROM api_key a WHERE a.email = ?1", nativeQuery = true)
     void deleteApiKeyByEmail(String email);
 

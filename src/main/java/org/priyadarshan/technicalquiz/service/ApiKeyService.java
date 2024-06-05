@@ -33,7 +33,7 @@ public class ApiKeyService {
                     apiKeyObj.setEmail(email);
                     apiKeyObj.setApiKey(apiKey);
                     apiKeyDao.save(apiKeyObj);
-                    return ResponseEntity.ok("API key generated successfully");
+                    return ResponseEntity.ok("{\"key\": \"" + apiKeyObj.getApiKey() +"\"}");
                 } catch (Exception e) {
                     String errorMessage = "{\"error\": \"An error occurred while processing your request\"}";
                     return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
@@ -61,6 +61,17 @@ public class ApiKeyService {
             return ResponseEntity.ok(apiKeyList);}
         else{
             List<String> errorMessage = new ArrayList<>();
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<String> deleteApiKey(String email) {
+
+        if (usersDao.findByEmail(email).isPresent()) {
+            apiKeyDao.deleteApiKeyByEmail(email);
+            return ResponseEntity.ok("API key deleted successfully");
+        } else {
+            String errorMessage = "{\"error\": \"User not found Please Register\"}";
             return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
         }
     }

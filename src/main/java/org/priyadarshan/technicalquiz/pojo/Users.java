@@ -17,7 +17,6 @@ import lombok.ToString;
 @Schema(description = "User Details")
 public class Users {
     @Id
-
     private String email;
     private String name;
     private String password;

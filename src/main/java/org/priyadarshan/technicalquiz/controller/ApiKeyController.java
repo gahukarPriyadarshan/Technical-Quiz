@@ -27,4 +27,9 @@ public class ApiKeyController {
         return apiKeyService.getApiKey(email);
     }
 
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<String> deleteApiKey(@PathVariable String email){
+        return apiKeyService.deleteApiKey(email);
+    }
+
 }
