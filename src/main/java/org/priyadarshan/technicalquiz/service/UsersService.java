@@ -133,7 +133,7 @@ public class UsersService {
                         updateUser.setPassword(encodedNewPassword);
                         updateUser.setSalt(salt);
                     }else{
-                        updateUser.setPassword(oldPassword);
+                        updateUser.setPassword(storedPassword);
                         updateUser.setSalt(oldUser.getSalt());
                     }
                     updateUser.setRole(oldUser.getRole());
